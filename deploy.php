@@ -7,7 +7,7 @@ require 'recipe/laravel.php';
 set('ssh_type', 'native');
 set('ssh_multiplexing', false);
 
-set('repository', 'https://github.com/Mohammad-Alavi/Samandoon.git');
+set('repository', 'http://github.com/Mohammad-Alavi/HomelandSec.git');
 
 add('shared_files', []);
 add('shared_dirs', []);
@@ -22,7 +22,7 @@ host('denora.ir')
     //->password('oQg70v8F5i')
     ->configFile('~/.ssh/config')
     ->identityFile('~/.ssh/id_rsa')
-    ->set('deploy_path', '/home/admin/domains/denora.ir');
+    ->set('deploy_path', '/home/admin/domains/outland.ir');
     //->pty(true);
 
 
