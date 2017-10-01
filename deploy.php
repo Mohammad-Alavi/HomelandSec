@@ -16,7 +16,7 @@ add('writable_dirs', []);
 
 // Servers
 
-host('denora.ir')
+host('outland.ir')
     ->user('root')
     ->port(22)
     //->password('oQg70v8F5i')
