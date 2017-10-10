@@ -1,4 +1,4 @@
-@extends('layouts.master')
+    @extends('layouts.master')
 
 @section('content')
         <div class="flex-center position-ref full-height">
@@ -22,7 +22,7 @@
                 @if (!empty($file))
                 <div id=fileinfo>
                     <p id=filetitle>File Info</p>
-                    <p class="pretext">File Name: </p>
+                    {{--  <p class="pretext">File Name: </p>
                     <p>{{ $file->getClientOriginalName() }}</p>
                     <p class="pretext">File Extension: </p>
                     <p>{{ $file->getClientOriginalExtension() }}</p>
@@ -31,7 +31,7 @@
                     <p class="pretext">File Size: </p>
                     <p>{{ $file->getSize() }}</p>
                     <p class="pretext">File Mime Type: </p>
-                    <p>{{ $file->getMimeType() }}</p>
+                    <p>{{ $file->getMimeType() }}</p>  --}}
                     <p class="pretext">File Path: </p>
                     <p><a target="blank">{{ $path }}</a></p>
                 </div>

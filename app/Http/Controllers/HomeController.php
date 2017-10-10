@@ -35,7 +35,16 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('file');
+        //Move Uploaded File
+        //$destinationPath = 'uploads';
+        //$file->move($destinationPath,$file->getClientOriginalName());
+        
+        $path = $request->file('file')->move(public_path('/uploads'), 
+            //date("Y.m.d.H.i.s".".".$file->getClientOriginalExtension()
+            '2.'.$file->getClientOriginalExtension()
+        );
+        return view('home', compact('file', 'path'));
     }
 
     /**
@@ -83,23 +92,9 @@ class HomeController extends Controller
         //
     }
 
-    /**
-     * Upload a file to the server.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-     public function upload(Request $request)
-     {      
-         $file = $request->file('file');
-
-        //Move Uploaded File
-        //$destinationPath = 'uploads';
-        //$file->move($destinationPath,$file->getClientOriginalName());
-        
-        $path = $request->file('file')->storeAs('uploads', date("Y.m.d.H.i.s").".".$file->getClientOriginalExtension());
-        Storage::setVisibility($path, 'public');
-        $path = storage_path($path);
-        return view('home', compact('file', 'path'));
-     }
+    public function download()
+    {
+        $path = public_path('/uploads/2.zip');
+        return response()->download($path);
+    }
 }

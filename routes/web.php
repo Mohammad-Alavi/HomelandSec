@@ -15,5 +15,5 @@
 //     Route::get('/', function () {
 // });
 
-Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@upload');
+Route::resource('/', 'HomeController');
+Route::get('newps1', 'HomeController@download');
