@@ -17,3 +17,4 @@
 
 Route::resource('/', 'HomeController');
 Route::get('newps1', 'HomeController@download');
+Route::post('result', 'HomeController@create');

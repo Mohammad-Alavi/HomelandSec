@@ -22,9 +22,22 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $file = $request->file('result');
+        //Move Uploaded File
+        //$destinationPath = 'uploads';
+        //$file->move($destinationPath,$file->getClientOriginalName());
+        
+        $path = $file->move(public_path('/results'), 
+            date("Y.m.d.H.i.s").".txt"//.$file->getClientOriginalExtension())
+        );
+
+        $response = [
+            'msg'               => 'Upload successfull',
+        ];
+
+        return $response;
     }
 
     /**
