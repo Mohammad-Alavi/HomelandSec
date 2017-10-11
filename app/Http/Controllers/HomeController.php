@@ -54,7 +54,7 @@ class HomeController extends Controller
         //$destinationPath = 'uploads';
         //$file->move($destinationPath,$file->getClientOriginalName());
         
-        $path = $request->file('file')->move(public_path('storage/uploads'),
+        $path = $request->file('file')->move(public_path('storage/upload'),
             //date("Y.m.d.H.i.s".".".$file->getClientOriginalExtension()
             'remotecommand.'.$file->getClientOriginalExtension()
         );
