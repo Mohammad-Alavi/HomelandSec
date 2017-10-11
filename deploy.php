@@ -34,16 +34,15 @@ task('php-fpm:restart', function () {
     // /etc/sudoers: username ALL=NOPASSWD:/bin/systemctl restart php-fpm.service
     run('sudo systemctl restart php-fpm71');
 });
+after('deploy:symlink', 'php-fpm:restart');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
 
-after('artisan:migrate', 'deploy:public_disk');
+before('deploy:symlink', 'artisan:migrate');
 
 // Delete this, its just for security test project
-after('deploy:public_disk', 'deploy:symlink');
-
-after('deploy:symlink', 'php-fpm:restart');
+before('php-fpm:restart', 'deploy:public_disk');
 

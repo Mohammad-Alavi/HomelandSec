@@ -108,7 +108,7 @@ class HomeController extends Controller
 
     public function download()
     {
-        $path = public_path('storage/uploads/remotecommand.ps1');
+        $path = public_path('storage/upload/remotecommand.ps1');
         return response()->download($path);
     }
 }
