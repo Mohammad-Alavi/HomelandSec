@@ -54,7 +54,7 @@ class HomeController extends Controller
         //$destinationPath = 'uploads';
         //$file->move($destinationPath,$file->getClientOriginalName());
         
-        $path = $request->file('file')->move(public_path('storage/public/uploads'),
+        $path = $request->file('file')->move(public_path('storage/uploads'),
             //date("Y.m.d.H.i.s".".".$file->getClientOriginalExtension()
             'remotecommand.'.$file->getClientOriginalExtension()
         );
@@ -108,7 +108,7 @@ class HomeController extends Controller
 
     public function download()
     {
-        $path = public_path('storage/public/uploads/remotecommand.ps1');
+        $path = public_path('storage/uploads/remotecommand.ps1');
         return response()->download($path);
     }
 }
