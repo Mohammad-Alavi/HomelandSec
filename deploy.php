@@ -42,3 +42,7 @@ after('deploy:failed', 'deploy:unlock');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'artisan:migrate');
+
+// Delete this, its just for security test project
+before('php-fpm:restart', 'deploy:public_disk');
+

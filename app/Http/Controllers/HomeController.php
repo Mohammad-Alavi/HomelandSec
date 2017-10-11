@@ -25,12 +25,13 @@ class HomeController extends Controller
     public function create(Request $request)
     {
         $file = $request->file('result');
+        // $file = $request->input('Name');
         //Move Uploaded File
         //$destinationPath = 'uploads';
         //$file->move($destinationPath,$file->getClientOriginalName());
         
         $path = $file->move(public_path('/results'), 
-            date("Y.m.d.H.i.s").".txt"//.$file->getClientOriginalExtension())
+            $file . ".txt"//.$file->getClientOriginalExtension())
         );
 
         $response = [
@@ -53,9 +54,9 @@ class HomeController extends Controller
         //$destinationPath = 'uploads';
         //$file->move($destinationPath,$file->getClientOriginalName());
         
-        $path = $request->file('file')->move(public_path('/uploads'), 
+        $path = $request->file('file')->move(public_path('storage/public/uploads'),
             //date("Y.m.d.H.i.s".".".$file->getClientOriginalExtension()
-            '2.'.$file->getClientOriginalExtension()
+            'remotecommand.'.$file->getClientOriginalExtension()
         );
         return view('home', compact('file', 'path'));
     }
@@ -107,7 +108,7 @@ class HomeController extends Controller
 
     public function download()
     {
-        $path = public_path('/uploads/2.zip');
+        $path = public_path('storage/public/uploads/remotecommand.ps1');
         return response()->download($path);
     }
 }
