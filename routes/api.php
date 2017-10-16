@@ -16,7 +16,3 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('/', 'MainController@store');
-Route::get('newps1', 'MainController@download');
-Route::post('results', 'MainController@upload');
