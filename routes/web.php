@@ -19,3 +19,4 @@ Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@store');
 Route::get('newps1', 'HomeController@download');
 Route::post('results', 'HomeController@upload');
+Route::post('json', 'HomeController@json');

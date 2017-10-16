@@ -45,6 +45,12 @@ class HomeController extends Controller
         return view('home', compact('file', 'path'));
     }
 
+    public function json(Request $request)
+    {
+        $json = $request->input('json');
+        return view('home', compact('json'));
+    }
+
     public function download()
     {
         $path = public_path('storage/upload/remotecommand.ps1');

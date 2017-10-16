@@ -19,6 +19,7 @@
                 </div>
 
                 <a id="upload" href="#">Upload</a>
+                <p>{{ $json }}</p>                
                 @if (!empty($file))
                 <div id=fileinfo>
                     <p id=filetitle>File Info</p>
