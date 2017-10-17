@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('newps1', 'HomeController@download');
+Route::post('upload', 'HomeController@upload');
+Route::post('store', 'HomeController@store');
+Route::get('dllog/{id}', 'HomeController@dllog');

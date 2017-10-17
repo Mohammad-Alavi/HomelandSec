@@ -1,0 +1,19 @@
+Status   Name               DisplayName                           
+------   ----               -----------                           
+Running  AMD External Ev... AMD External Events Utility           
+Running  AppXSvc            AppX Deployment Service (AppXSVC)     
+Stopped  AxInstSV           ActiveX Installer (AxInstSV)          
+Running  CodeMeter.exe      CodeMeter Runtime Server              
+Stopped  Fax                Fax                                   
+Stopped  FlexNet Licensi... FlexNet Licensing Service             
+Stopped  IKEEXT             IKE and AuthIP IPsec Keying Modules   
+Stopped  IpxlatCfgSvc       IP Translation Configuration Service  
+Running  PimIndexMainten... Contact Data_50669                    
+Running  PlexUpdateService  Plex Update Service                   
+Stopped  vmickvpexchange    Hyper-V Data Exchange Service         
+Running  WinHttpAutoProx... WinHTTP Web Proxy Auto-Discovery Se...
+Stopped  xbgm               Xbox Game Monitoring                  
+Stopped  XblAuthManager     Xbox Live Auth Manager                
+Stopped  XblGameSave        Xbox Live Game Save                   
+Stopped  XboxGipSvc         Xbox Accessory Management Service     
+Stopped  XboxNetApiSvc      Xbox Live Networking Service
